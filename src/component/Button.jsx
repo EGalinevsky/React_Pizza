@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export const Button = (props)=>{
 
@@ -8,7 +9,7 @@ export const Button = (props)=>{
 
     return(
         <div className="header__cart">
-              <a href="/cart.html" className="button button--cart">
+              <NavLink to="/basket" className="button button--cart">
                 <span>{props.price} ₽</span>
                 <div className="button__delimiter"></div>
                 <svg
@@ -41,7 +42,7 @@ export const Button = (props)=>{
                   />
                 </svg>
                 <span>3</span>
-              </a>
+              </NavLink>
             </div> 
     )
 }

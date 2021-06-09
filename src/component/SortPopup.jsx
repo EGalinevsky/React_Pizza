@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
-export const SortPopup = () => {
+export const SortPopup = (props) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
+  const refElem = useRef();
+  const activeLabel = props.PopupItems[activeItem]
+  
+
+  const toggleVisiblePopup = () => {
+    setVisiblePopup(!visiblePopup);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (!e.path.includes(refElem.current)) {
+      setVisiblePopup(false)
+    }
+  };
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopup(false)
+  };
+
+  useEffect(() => {
+    document.body.addEventListener('click', handleOutsideClick);
+  }, []);
+
   return (
     <div>
-      <div className="sort">
+      <div ref={refElem} className="sort">
         <div className="sort__label">
           <svg
+          className={visiblePopup && 'rotated'}
             width="10"
             height="6"
             viewBox="0 0 10 6"
@@ -18,16 +43,23 @@ export const SortPopup = () => {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick={() => setVisiblePopup(prev => !prev)}>популярности</span>
+          <span onClick={toggleVisiblePopup}>{activeLabel}</span>
         </div>
-        {visiblePopup && <div visiblePopup className="sort__popup">
-          <ul>
-            <li className="active">популярности</li>
+        {visiblePopup && (
+          <div visiblePopup className="sort__popup">
+            <ul>
+              {props.PopupItems.map((item, index) => (
+                <li
+                className={activeItem === index ? 'active' : ''}
+                onClick={() => onSelectItem(index)}
+                key={`${item}_${index}`}>{item}</li>
+              ))}
+              {/* <li className="active">популярности</li>
             <li>цене</li>
-            <li>алфавиту</li>
-          </ul>
-        </div> }
-        
+            <li>алфавиту</li> */}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
