@@ -13,7 +13,7 @@ export const Home = ({pizzas}) => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {pizzas.map(p=> <PizzaBlock img={p.imageUrl} name={p.name} price={p.price}/>)}
+        {pizzas.map(p=> <PizzaBlock key={p.id} {...p}/>)}
         
       </div>
     </div>
