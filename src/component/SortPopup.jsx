@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-export const SortPopup = ({PopupItems}) => {
+export const SortPopup =React.memo( ({PopupItems}) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
   const refElem = useRef();
@@ -54,13 +54,10 @@ export const SortPopup = ({PopupItems}) => {
                 onClick={() => onSelectItem(index)}
                 key={`${obj.type}_${index}`}>{obj.name}</li>
               ))}
-              {/* <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li> */}
             </ul>
           </div>
         )}
       </div>
     </div>
   );
-};
+});
