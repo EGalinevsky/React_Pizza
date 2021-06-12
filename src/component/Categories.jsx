@@ -5,6 +5,7 @@ export const Categories = ({ items, click }) => {
 
   const onSelectItem = (index) => {
     setActiveItem(index);
+    click(index)
   };
 
   return (

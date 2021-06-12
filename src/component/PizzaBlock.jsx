@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types'
 
 export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
+  
   const typesArr = ['тонкое', 'традиционное'];
   const sizesArr = [26, 30, 40];
   const [activeType, setactiveType] = useState(types[0]);
