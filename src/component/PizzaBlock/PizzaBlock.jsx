@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+
 
 export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
   
@@ -13,6 +14,8 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
     setactiveType(index);
   };
 
+
+   
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
