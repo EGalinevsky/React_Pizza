@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 
 import './App.scss';
 import { Header } from './component';
-import { Basket, Home } from './pages';
+import { Basket, Home, Cart } from './pages';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Header />
         <div className="content">
           <Route exact path='/' component={Home} />
-          <Route path='/basket' component={Basket} />
+          <Route path='/basket' component={Cart} />
         </div>
       </div>
     </div>

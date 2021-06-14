@@ -44,7 +44,7 @@ export const Home = () => {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
-          ? items.map((p) => <PizzaBlock key={p.id} {...p} />)
+          ? items.map((p) => <PizzaBlock onClickAddPizza={(id) => console.log(id)} key={p.id} {...p} />)
           : Array(10)
               .fill(0)
               .map((_, index) => <PizzaLoadingBlock key={index} />)}

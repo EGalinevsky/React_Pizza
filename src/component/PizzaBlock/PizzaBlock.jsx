@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-
-export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
-  
+export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizza, id }) => {
   const typesArr = ['тонкое', 'традиционное'];
   const sizesArr = [26, 30, 40];
   const [activeType, setactiveType] = useState(types[0]);
-  const [activeSize, setactiveSize] = useState(sizes[0]);
+  const [activeSize, setactiveSize] = useState(0);
 
   const onSelectType = (index) => {
     setactiveType(index);
   };
 
+  const handleAddPizzza = () => {
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: sizesArr[activeSize],
+      type: typesArr[activeType],
+    };
+    onClickAddPizza(obj);
+  };
 
-   
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -50,7 +58,7 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <button onClick={handleAddPizzza} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -64,16 +72,17 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes }) => {
           </svg>
           <span>Добавить</span>
           <i>2</i>
-        </div>
+        </button>
       </div>
     </div>
-  ); 
+  );
 };
 
-PizzaBlock.propTypes={
+PizzaBlock.propTypes = {
   name: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   price: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  sizes: PropTypes.arrayOf(PropTypes.number).isRequired
-}
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onClickAddPizza: PropTypes.func.isRequired,
+};
