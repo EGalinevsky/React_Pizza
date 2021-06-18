@@ -4,9 +4,8 @@ import emptyCart from './../assets/img/empty-cart.png'
 
 export const Basket = () => {
     return (
-        <div class="wrapper">
       
-      <div class="content">
+      
         <div class="container container--cart">
           <div class="cart cart--empty">
             <h2>Корзина пустая <icon>😕</icon></h2>
@@ -20,7 +19,5 @@ export const Basket = () => {
             </NavLink>
           </div>
         </div>
-      </div>
-    </div>
     )
 }

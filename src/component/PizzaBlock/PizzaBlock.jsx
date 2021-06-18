@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizza, id }) => {
+export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizza, id,addedcartCount }) => {
   const typesArr = ['тонкое', 'традиционное'];
   const sizesArr = [26, 30, 40];
   const [activeType, setactiveType] = useState(types[0]);
@@ -51,6 +51,7 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizz
                 active: activeSize === id,
                 disabled: !sizes.includes(s),
               })}>
+                {/* здесь Id берется из самого массива эл поэтому можно делать onclick так  */}
               {s} см.
             </li>
           ))}
@@ -58,7 +59,7 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizz
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <button onClick={handleAddPizzza} className="button button--outline button--add">
+        <button onClick={handleAddPizzza} className="button button--outline button--add">{/* здесь нужна функиция потому что данные приходят через пропсы  */}
           <svg
             width="12"
             height="12"
@@ -71,7 +72,7 @@ export const PizzaBlock = ({ name, types, price, imageUrl, sizes, onClickAddPizz
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {addedcartCount && <i>{addedcartCount}</i>}
         </button>
       </div>
     </div>
@@ -85,4 +86,5 @@ PizzaBlock.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
   onClickAddPizza: PropTypes.func.isRequired,
+  addedcartCount: PropTypes.number
 };
