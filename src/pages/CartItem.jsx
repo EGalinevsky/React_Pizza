@@ -36,6 +36,7 @@ export const CartItem = ({
         </p>
       </div>
       <div className="cart__item-count">
+        
         <div onClick={handleMinusClick} className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
@@ -55,6 +56,7 @@ export const CartItem = ({
         </div>
         <b>{totalCount}</b>
         <button
+          
           onClick={handlePlusClick}
           className="button button--outline button--circle cart__item-count-plus">
           <svg
@@ -78,7 +80,7 @@ export const CartItem = ({
         <b>{totalPrice} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <button onClick={handleRemoveClick} className="button button--outline button--circle">
+        <button onClick={handleRemoveClick}  className="button button--outline button--circle">
           <svg
             width="10"
             height="10"
